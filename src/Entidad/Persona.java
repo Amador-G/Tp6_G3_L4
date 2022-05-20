@@ -8,6 +8,9 @@ public class Persona {
 	private String Apellido;
    
 	public Persona(){}
+	public Persona(String Dni) {
+		this.Dni = Dni;
+	}
 	public Persona(String Dni,String Nombre,String Apellido){
 		this.Dni = Dni;
 		this.Nombre = Nombre;
@@ -50,14 +53,6 @@ public class Persona {
 	@Override
 	public String toString() {
 		return Dni + " - " + Nombre + " - " + Apellido;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
+	}	
 	
 }
