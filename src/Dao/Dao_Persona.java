@@ -57,7 +57,7 @@ public class Dao_Persona {
 	public int EliminarPersonas(Persona persona)
 	{
 		int filas = 0;
-		String query = "call sp_ModificarPersona('"+persona.getDni()+"','"+persona.getNombre()+"','"+persona.getApellido()+"')";
+		String query = "call sp_EliminarPersona('"+persona.getDni()+"')";
 	    cn = null;
 		try 
 		{
@@ -117,22 +117,25 @@ public class Dao_Persona {
 		return Lusuarios;		
 	}
 	
-	public int ExistePersona(Persona persona)
+	public boolean ExistePersona(Persona persona)
 	{
-		int filas = 0;
+		boolean Existe = false;
 		String query = "select * from personas where Dni = "+ persona.getDni().toString() +"";
 	    cn = null;
 		try 
 		{
 			cn = DriverManager.getConnection(host+dbName,user,pass);
 			st = cn.createStatement();
-			filas = st.executeUpdate(query);			
+			ResultSet rs =  st.executeQuery(query);
+			if(rs.next()) {
+				Existe = true;
+			}
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		return filas;		
+		return Existe;
 	}
 }
 
